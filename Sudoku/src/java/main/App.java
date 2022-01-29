@@ -1,4 +1,5 @@
-package com.sudoku;
+package main;
+
 /**
  * Hello world!
  *

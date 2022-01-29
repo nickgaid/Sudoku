@@ -1,4 +1,4 @@
-package com.sudoku;
+package GameController;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,5 +18,35 @@ public class GameController extends JFrame implements ActionListener, MouseListe
     private JPanel minespan = new JPanel(new GridLayout(9,9));
     public static void main(String[] args) {
         System.out.println("Main 2");
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+
+    }
+
+    @Override
+    public void mouseClicked(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseReleased(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseEntered(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseExited(MouseEvent e) {
+
     }
 }
