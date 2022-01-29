@@ -1,7 +1,4 @@
 package com.sudoku;
-
-
-
 /**
  * Hello world!
  *
