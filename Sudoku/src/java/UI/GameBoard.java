@@ -5,34 +5,32 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GameBoard extends JFrame implements MouseListener{
-    private JPanel mainPanel = new JPanel (new GridLayout(1,2));
+    private JPanel mainPanel = new JPanel (new FlowLayout());
     private JPanel numbersPanel = new JPanel (new GridLayout (3,3));
-    private JPanel crossBoard = new JPanel(new GridLayout(9, 9));;
-    private JButton[][] buttonsInCross = new JButton[9][9];
+    private JPanel[] crossBoard = new JPanel[9];
+    private JButton[][] buttonsInCross = new JButton[3][3];
     private JButton[][] buttonsToSelect = new JButton[3][3];
 
     public GameBoard() {
         super("Sudoku");
-        for (int i = 0; i < buttonsInCross.length; i++) {
-            for (int k = 0; k < buttonsInCross[0].length; k++) {
-                buttonsInCross[i][k] = new JButton(String.valueOf(k+1));
-                buttonsInCross[i][k].setFocusPainted(false);
-                buttonsInCross[i][k].setContentAreaFilled(false);
-                buttonsInCross[i][k].addMouseListener(this);
-                buttonsInCross[i][k].setBorder(BorderFactory.createMatteBorder(1,1,1,1,Color.BLACK));
-                if( k == 5 || k == 2 ) {
-                    buttonsInCross[i][k].setBorder(BorderFactory.createMatteBorder(1, 1, 1, 4, Color.BLACK));
+        for (int j = 0; j < crossBoard.length; j++) {
+            crossBoard[j] = new JPanel(new GridLayout(3, 3));
+            crossBoard[j].setBorder(BorderFactory.createLineBorder(Color.BLACK));
+            for (int i = 0; i < buttonsInCross.length; i++) {
+                for (int k = 0; k < buttonsInCross[0].length; k++) {
+                    switch (i) {
+                        case 0 -> buttonsInCross[i][k] = new JButton(String.valueOf(k + 1));
+                        case 1 -> buttonsInCross[i][k] = new JButton(String.valueOf(k + 4));
+                        case 2 -> buttonsInCross[i][k] = new JButton(String.valueOf(k + 7));
+                    }
+                    buttonsInCross[i][k].setFocusPainted(false);
+                    buttonsInCross[i][k].setContentAreaFilled(false);
+                    buttonsInCross[i][k].addMouseListener(this);
+                    buttonsInCross[i][k].setPreferredSize(new Dimension(60,60));
+                    crossBoard[j].add(buttonsInCross[i][k]);
                 }
-                if ( i == 2 || i == 5 ){
-                    buttonsInCross[i][k].setBorder(BorderFactory.createMatteBorder(1, 1, 4, 1, Color.BLACK));
-
-                }
-                if ((i == 2 && k == 2) || (i == 2 && k == 5) || (i == 5 && k == 2) || (i == 5 && k == 5) ){
-                    buttonsInCross[i][k].setBorder(BorderFactory.createMatteBorder(1,1,4,4,Color.BLACK));
-                }
-
-                crossBoard.add(buttonsInCross[i][k]);
             }
+            mainPanel.add(crossBoard[j],BorderLayout.WEST);
         }
         int counter = 1;
             for (int i = 0; i < buttonsToSelect.length; i++) {
@@ -41,17 +39,17 @@ public class GameBoard extends JFrame implements MouseListener{
                     buttonsToSelect[i][k].setFocusPainted(false);
                     buttonsToSelect[i][k].setContentAreaFilled(false);
                     buttonsToSelect[i][k].addMouseListener(this);
+                    buttonsToSelect[i][k].setPreferredSize(new Dimension(50,50));
                     numbersPanel.add(buttonsToSelect[i][k]);
                     counter++;
                 }
             }
-        mainPanel.add(crossBoard);
-        mainPanel.add(numbersPanel);
+        mainPanel.add(numbersPanel,BorderLayout.EAST);
         add(mainPanel);
+        setPreferredSize(new Dimension(610,760));
+        pack();
         setLocationRelativeTo(null);
         setVisible(true);
-        setPreferredSize(new Dimension(500,400));
-        pack();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
     }
