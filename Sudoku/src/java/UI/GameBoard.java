@@ -47,6 +47,7 @@ public class GameBoard extends JFrame implements MouseListener{
         mainPanel.add(numbersPanel,BorderLayout.EAST);
         add(mainPanel);
         setPreferredSize(new Dimension(610,760));
+        setResizable(false);
         pack();
         setLocationRelativeTo(null);
         setVisible(true);
