@@ -5,11 +5,11 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class GameBoard extends JFrame implements MouseListener{
-    private JPanel mainPanel = new JPanel (new FlowLayout());
-    private JPanel numbersPanel = new JPanel (new GridLayout (3,3));
-    private JPanel[] crossBoard = new JPanel[9];
-    private JButton[][] buttonsInCross = new JButton[3][3];
-    private JButton[][] buttonsToSelect = new JButton[3][3];
+    private final JPanel mainPanel = new JPanel (new FlowLayout());
+    private final JPanel numbersPanel = new JPanel (new GridLayout (3,3));
+    private final JPanel[] crossBoard = new JPanel[9];
+    private final JButton[][] buttonsInCross = new JButton[3][3];
+    private final JButton[][] buttonsToSelect = new JButton[3][3];
 
     public GameBoard() {
         super("Sudoku");
